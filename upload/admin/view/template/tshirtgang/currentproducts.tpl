@@ -75,6 +75,7 @@
   <script src="view/vendor/datatables/jquery.dataTables.min.js"></script>
   <script type="text/javascript">
     var tableajax = 0;
+    var first_item_id = 0;
     var unloadFunc = function() {
       var Ans = confirm("Are you sure you want leave this page? Your connection to the Tshirtgang server will be lost.");
       if(Ans==true)
@@ -217,6 +218,11 @@
             }
             tableajax.draw();
             $('.popover').remove();
+            if(first_item_id == json.items[0].id){
+              json.done=true;
+            } else {
+              first_item_id = json.items[0].id;
+            }
             if(json.done){
               $('#button-sync').prop('disabled', false);
               $('#sync-spinner').hide();

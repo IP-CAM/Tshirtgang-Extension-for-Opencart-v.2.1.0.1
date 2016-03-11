@@ -283,8 +283,11 @@
             var ctx_w = parseInt(ctx_h * 1.10);
             var overlay_yoffset = 10;
             var overlay_xoffset = 10;
+            var overlay_height = 10;
+            var overlay_width = 10;
             var overlay_h = 10;
             var overlay_w = 10;
+            var scale_ratio = 1.0;
             element = element[0];
             var requiredElement = element.firstChild;
             if(ecolor.options[ecolor.selectedIndex].value != '' && estyle.options[estyle.selectedIndex].value != '' ){
@@ -309,29 +312,25 @@
                 ctx.drawImage(imageObj1, parseInt(0), parseInt(0), ctx_w, ctx_h);
                 imageObj2.src = '/image/catalog/apparel/overlay_'+tsg_product_id+'.png';
                 imageObj2.onload = function() {
+                  overlay_height = imageObj2.naturalHeight;
+                  overlay_width  = imageObj2.naturalWidth;
                   if(style_text == 'Hooded Pullover' || style_text == 'Apron'){
-                    overlay_yoffset = parseInt(ctx_h * 0.23);
-                    overlay_xoffset = parseInt(ctx_w * 0.39);
-                    overlay_h = parseInt(ctx_h * 0.33);
-                    overlay_w = parseInt(ctx_w * 0.22);
+                    scale_ratio = 172.0/overlay_width;
+                    overlay_h = parseInt(overlay_height * scale_ratio);
+                    overlay_w = parseInt(overlay_width * scale_ratio);
+                    overlay_yoffset = 162;
+                    overlay_xoffset = 310;
                     ctx.drawImage(imageObj2, overlay_xoffset, overlay_yoffset, overlay_w, overlay_h);
-                    //ctx.drawImage(imageObj2, 310, 165, 173, 239);// h=720
                   } else {
-                    overlay_yoffset = parseInt(ctx_h * 0.23);
-                    overlay_xoffset = parseInt(ctx_w * 0.33);
-                    overlay_h = parseInt(ctx_h * 0.53);
-                    overlay_w = parseInt(ctx_w * 0.35);
+                    scale_ratio = 250.0/overlay_width;
+                    overlay_h = parseInt(overlay_height * scale_ratio);
+                    overlay_w = parseInt(overlay_width * scale_ratio);
+                    overlay_yoffset = 162;
+                    overlay_xoffset = 271;
                     ctx.drawImage(imageObj2, overlay_xoffset, overlay_yoffset, overlay_w, overlay_h);
-                    //ctx.drawImage(imageObj2, 260, 165, 275, 379);// h=720
-                  //} else {
-                  //	overlay_yoffset = parseInt(ctx_h * 0.23);
-                  //	overlay_xoffset = parseInt(ctx_w * 0.34);
-                  //	overlay_h = parseInt(ctx_h * 0.47);
-                  //	overlay_w = parseInt(ctx_w * 0.31);
-                  //	ctx.drawImage(imageObj2, overlay_xoffset, overlay_yoffset, overlay_w, overlay_h);
                   }
                   //ctx.drawImage(imageObj2, overlay_xoffset, overlay_yoffset, overlay_w, overlay_h);
-                  sharpen(ctx,ctx_w,ctx_h,0.15);
+                  sharpen(ctx,ctx_w,ctx_h,0.05);
                   var img = c.toDataURL("image/png");
                   element.href = img;
                   requiredElement.src = img;

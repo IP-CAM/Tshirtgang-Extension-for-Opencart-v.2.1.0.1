@@ -84,7 +84,7 @@ class ControllerTshirtgangSales extends Controller {
 			$ch = curl_init(); // initialize curl handle
 			curl_setopt($ch, CURLOPT_URL, $api_url); // set url to post to
 			curl_setopt($ch, CURLOPT_FAILONERROR, 1); // Fail on errors
-			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); // allow redirects
+			//curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); // allow redirects
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER,1); // return into a variable
 			curl_setopt($ch, CURLOPT_PORT, $port); //Set the port number
 			curl_setopt($ch, CURLOPT_TIMEOUT, 15); // times out after 15s
@@ -97,7 +97,7 @@ class ControllerTshirtgangSales extends Controller {
 			$api_response = curl_exec($ch);
 			//echo "<pre>";var_dump(htmlentities($api_response));echo "</pre>";die;
 			curl_close($ch);
-			
+
 			$seller_history = new SimpleXMLElement($api_response);
 			
 			$to_json = array();
@@ -143,7 +143,7 @@ class ControllerTshirtgangSales extends Controller {
 					$this->response->setOutput(json_encode($to_json));
 				} else {
 					// tshirtgang query success but returned empty result
-					$this->response->setOutput(json_encode(array()));
+					$this->response->setOutput(json_encode(array('data'=>array())));
 				}
 			} else {
 				// api call not successful

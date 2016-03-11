@@ -98,7 +98,7 @@ class ControllerTshirtgangCurrentproducts extends Controller {
 			$ch = curl_init(); // initialize curl handle
 			curl_setopt($ch, CURLOPT_URL, $api_url); // set url to post to
 			curl_setopt($ch, CURLOPT_FAILONERROR, 1); // Fail on errors
-			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); // allow redirects
+			//curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); // allow redirects
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER,1); // return into a variable
 			curl_setopt($ch, CURLOPT_PORT, $port); //Set the port number
 			curl_setopt($ch, CURLOPT_TIMEOUT, 15); // times out after 15s

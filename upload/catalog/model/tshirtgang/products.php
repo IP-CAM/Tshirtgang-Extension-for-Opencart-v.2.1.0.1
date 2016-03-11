@@ -80,9 +80,9 @@ class ModelTshirtgangProducts extends Model {
 		'Burgundy',
 		'Light Blue',
 		'Light Pink',
-		'Navy Ringer',
-		'Black Ringer',
-		'Red Ringer'
+		//'Navy Ringer',
+		//'Black Ringer',
+		//'Red Ringer'
 		);
 	}
 
@@ -95,7 +95,7 @@ class ModelTshirtgangProducts extends Model {
 			'Apron',
 			'Vneck',
 			'Tanktop',
-			'Kids',
+			//'Kids',
 			'Baby One Piece'
 		);
 	}
@@ -111,12 +111,12 @@ class ModelTshirtgangProducts extends Model {
 		'X-Large',
 		'2 X-Large',
 		'3 X-Large',
-		'4 X-Large',
-		'5 X-Large',
-		'6 X-Large',
-		'2T',
-		'3T',
-		'4T',
+		//'4 X-Large',
+		//'5 X-Large',
+		//'6 X-Large',
+		//'2T',
+		//'3T',
+		//'4T',
 		'6 Months',
 		'12 Months',
 		'18 Months'
@@ -153,9 +153,9 @@ class ModelTshirtgangProducts extends Model {
 			'Burgundy',
 			'Light Blue',
 			'Light Pink',
-			'Navy Ringer',
-			'Black Ringer',
-			'Red Ringer'
+			//'Navy Ringer',
+			//'Black Ringer',
+			//'Red Ringer'
 		);
 
 		$all_options['styles_colors']['Mens Fitted'] = array(
@@ -219,13 +219,13 @@ class ModelTshirtgangProducts extends Model {
 			'Red'
 		);
 
-		$all_options['styles_colors']['Kids'] = array(
-			'White',
-			'Black',
-			'Royal Blue',
-			'Sport Grey',
-			'Red'
-		);
+		//$all_options['styles_colors']['Kids'] = array(
+		//	'White',
+		//	'Black',
+		//	'Royal Blue',
+		//	'Sport Grey',
+		//	'Red'
+		//);
 
 		$all_options['styles_colors']['Baby One Piece'] = array(
 			'White'
@@ -242,9 +242,9 @@ class ModelTshirtgangProducts extends Model {
 			'X-Large',
 			'2 X-Large',
 			'3 X-Large',
-			'4 X-Large',
-			'5 X-Large',
-			'6 X-Large'
+			//'4 X-Large',
+			//'5 X-Large',
+			//'6 X-Large'
 		);
 
 		$all_options['styles_sizes']['Mens Fitted'] = array(
@@ -291,11 +291,11 @@ class ModelTshirtgangProducts extends Model {
 			'Large'
 		);
 
-		$all_options['styles_sizes']['Kids'] = array(
-			'2T',
-			'3T',
-			'4T'
-		);
+		//$all_options['styles_sizes']['Kids'] = array(
+		//	'2T',
+		//	'3T',
+		//	'4T'
+		//);
 
 		$all_options['styles_sizes']['Baby One Piece'] = array(
 			'6 Months',
@@ -311,7 +311,7 @@ class ModelTshirtgangProducts extends Model {
 			'Apron',
 			'Vneck',
 			'Tanktop',
-			'Kids',
+			//'Kids',
 			'Baby One Piece'
 		);
 		
@@ -323,7 +323,7 @@ class ModelTshirtgangProducts extends Model {
 			'Apron',
 			'Vneck',
 			'Tanktop',
-			'Kids'
+			//'Kids'
 		);
 
 		$all_options['colors_styles']['Red'] = array(
@@ -333,7 +333,7 @@ class ModelTshirtgangProducts extends Model {
 			'Hooded Pullover',
 			'Vneck',
 			'Tanktop',
-			'Kids'
+			//'Kids'
 		);
 
 		$all_options['colors_styles']['Sport Grey'] = array(
@@ -343,7 +343,7 @@ class ModelTshirtgangProducts extends Model {
 			'Hooded Pullover',
 			'Vneck',
 			'Tanktop',
-			'Kids'
+			//'Kids'
 		);
 
 		$all_options['colors_styles']['Royal Blue'] = array(
@@ -352,7 +352,7 @@ class ModelTshirtgangProducts extends Model {
 			'Ladies',
 			'Hooded Pullover',
 			'Tanktop',
-			'Kids'
+			//'Kids'
 		);
 
 		$all_options['colors_styles']['Navy'] = array(
@@ -429,17 +429,17 @@ class ModelTshirtgangProducts extends Model {
 			'Standard'
 		);
 
-		$all_options['colors_styles']['Navy Ringer'] = array(
-			'Standard'
-		);
+		//$all_options['colors_styles']['Navy Ringer'] = array(
+		//	'Standard'
+		//);
 
-		$all_options['colors_styles']['Black Ringer'] = array(
-			'Standard'
-		);
+		//$all_options['colors_styles']['Black Ringer'] = array(
+		//	'Standard'
+		//);
 
-		$all_options['colors_styles']['Red Ringer'] = array(
-			'Standard'
-		);
+		//$all_options['colors_styles']['Red Ringer'] = array(
+		//	'Standard'
+		//);
 
 		return $all_options;
 	}

@@ -75,7 +75,7 @@
   <script src="view/vendor/datatables/jquery.dataTables.min.js"></script>
   <script type="text/javascript">
     var tableajax = 0;
-    var first_item_id = 0;
+    var item_per_page = 4;
     var unloadFunc = function() {
       var Ans = confirm("Are you sure you want leave this page? Your connection to the Tshirtgang server will be lost.");
       if(Ans==true)
@@ -200,7 +200,7 @@
           cache: false,
           data: {
             page: startpage,
-            ipp: 4
+            ipp: item_per_page,
           },
           success: function(json){
             console.log(json);
@@ -218,10 +218,8 @@
             }
             tableajax.draw();
             $('.popover').remove();
-            if(first_item_id == json.items[0].id){
+            if(json.count != item_per_page){
               json.done=true;
-            } else {
-              first_item_id = json.items[0].id;
             }
             if(json.done){
               $('#button-sync').prop('disabled', false);
@@ -259,6 +257,7 @@
               return;
             } else {
               //handle error
+              alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
             }
             //alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
             //window.onbeforeunload = null;

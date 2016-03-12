@@ -214,7 +214,7 @@ class ControllerTshirtgangCurrentproducts extends Controller {
 					$this->response->setOutput(json_encode(array('status'=>'success', 'done'=>false, 'retrieved'=>$newly_retrieved_count, 'duplicate'=>$duplicate_count, 'count'=>$total_items, 'messages'=> $messages, 'items'=>$retrievied_items)));
 				} else {
 					// tshirtgang query success but returned empty result
-					$this->response->setOutput(json_encode(array('status'=>'success', 'done'=>true, 'retrieved'=>0, 'duplicate'=>0, 'count'=>0, 'messages'=>array('finish'))));
+					$this->response->setOutput(json_encode(array('status'=>'success', 'done'=>true, 'retrieved'=>0, 'duplicate'=>0, 'count'=>0, 'messages'=>array('finish'), 'items'=>array())));
 				}
 			} else {
 				// api call not successful

@@ -132,12 +132,23 @@ class ControllerModuleTshirtgang extends Controller {
 		
 		// event
 		$this->load->model('extension/event');
-		$this->model_extension_event->addEvent('tshirtgang_sendorder', 'post.order.add', 'module/tshirtgang_sendorder/send');
+		$this->model_extension_event->addEvent('tshirtgang_sendorder', 'post.order.history.add', 'module/tshirtgang_sendorder/send');
 
 		// shipping extension
 		$this->load->model('extension/extension');
 		$this->model_extension_extension->install('shipping', 'apparelstandard');
 		$this->model_extension_extension->install('shipping', 'apparelrush');
+		
+		// order status
+		$this->load->model('localisation/order_status');
+		$this->model_localisation_order_status->addOrderStatus(
+			array(
+				'order_status' => array(
+					'1' => 'Send order to Tshirtgang',
+				)
+			)
+		);
+		
 	}
 
 	public function uninstall() {
@@ -171,7 +182,19 @@ class ControllerModuleTshirtgang extends Controller {
 		$this->model_extension_extension->uninstall('shipping', 'apparelstandard');
 		$this->model_extension_extension->uninstall('shipping', 'apparelrush');
 
-
+		// order status
+		$this->load->model('localisation/order_status');
+		$statuses = $this->model_localisation_order_status->getOrderStatuses(
+			array(
+				'order' => 'DESC',
+				)
+			)
+		);
+		foreach($statuses as $key => $value){
+			if($value === 'Send order to Tshirtgang'){
+				$this->model_localisation_order_status->deleteOrderStatus($key);
+			}
+		}
 	}
 
 	public function index() {

@@ -6,7 +6,7 @@ class ControllerModuleTshirtgangSendorder extends Controller {
 		
 	}
 
-	public function send(){
+	public function send($order_id){
 		$this->load->model('setting/setting');
 		$tsg_setting = $this->model_setting_setting->getSetting('tshirtgang');
 		$api_key  = $tsg_setting['tshirtgang_api_key'];

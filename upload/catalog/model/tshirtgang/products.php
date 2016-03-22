@@ -23,7 +23,7 @@ class ModelTshirtgangProducts extends Model {
 		$sql .= "FROM ";
 		$sql .= " " . DB_PREFIX . "tshirtgang_products tsgp ";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product ocp ON ";
-		$sql .= " CONCAT('tsg_', tsgp.id) = ocp.mpn ";
+		$sql .= " CONCAT('fbt_', tsgp.id) = ocp.mpn ";
 		$sql .= "WHERE ocp.product_id=".$product_id;
 		$query = $this->db->query($sql);
 		$product_data = $query->rows;

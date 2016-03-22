@@ -83,7 +83,7 @@
           ]]></search>
           <add><![CDATA[
           // TSG Product
-          $tsg_product = $this->db->query("SELECT ocp.mpn FROM " . DB_PREFIX . "product ocp LEFT JOIN " . DB_PREFIX . "tshirtgang_products tsgp ON  CONCAT('tsg_', tsgp.id) = ocp.mpn WHERE ocp.product_id='" . (int)$cart['product_id'] . "'");
+          $tsg_product = $this->db->query("SELECT ocp.mpn FROM " . DB_PREFIX . "product ocp LEFT JOIN " . DB_PREFIX . "tshirtgang_products tsgp ON  CONCAT('fbt_', tsgp.id) = ocp.mpn WHERE ocp.product_id='" . (int)$cart['product_id'] . "'");
           if($tsg_product->num_rows){
             $price = 0; // price will be determined by options
           }

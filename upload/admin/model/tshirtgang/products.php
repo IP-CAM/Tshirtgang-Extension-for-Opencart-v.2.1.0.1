@@ -46,7 +46,7 @@ class ModelTshirtgangProducts extends Model {
 		$sql .= "FROM ";
 		$sql .= " " . DB_PREFIX . "tshirtgang_products tsgp ";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product ocp ON ";
-		$sql .= " CONCAT('tsg_', tsgp.id) = ocp.mpn ";
+		$sql .= " CONCAT('fbt_', tsgp.id) = ocp.mpn ";
 		if(isset($data['ids']) && is_array($data['ids']) && !empty($data['ids']) ){
 			$ids=implode(',',$data['ids']);
 			$where_and[] = " tsgp.id IN(". $ids .") ";
@@ -119,7 +119,7 @@ class ModelTshirtgangProducts extends Model {
 		$sql .= "FROM ";
 		$sql .= " " . DB_PREFIX . "tshirtgang_products tsgp ";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product ocp ON ";
-		$sql .= " CONCAT('tsg_', tsgp.id) = ocp.mpn";
+		$sql .= " CONCAT('fbt_', tsgp.id) = ocp.mpn";
 		$query = $this->db->query($sql);
 		foreach ($query->rows as $result) {
 			$product_data[] = $result;
@@ -253,7 +253,7 @@ class ModelTshirtgangProducts extends Model {
 				$sql .= "LEFT JOIN " . DB_PREFIX . "product ocp ";
 				$sql .= " ON ocp.product_id = ocpov.product_id ";
 				$sql .= "LEFT JOIN " . DB_PREFIX . "tshirtgang_products tsgp ";
-				$sql .= " ON CONCAT('tsg_', tsgp.id) = ocp.mpn ";
+				$sql .= " ON CONCAT('fbt_', tsgp.id) = ocp.mpn ";
 				$sql .= "SET ocpov.price=". (float)$tso2['price'] . " ";
 				$sql .= "WHERE ";
 				$sql .= "  ocpov.option_value_id = " . (int)$tso2['option_value_id'] . " ";

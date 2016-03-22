@@ -355,7 +355,7 @@ class ControllerTshirtgangCurrentproducts extends Controller {
 			'ean'             => '',
 			'jan'             => '',
 			'isbn'            => '',
-			'mpn'             => 'tsg_'.$item->productID,
+			'mpn'             => 'fbt_'.$item->productID,
 			'location'        => '',
 			'quantity'        => 1000,
 			'minimum'         => 1,

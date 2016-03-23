@@ -210,7 +210,7 @@ class ControllerTshirtgangCurrentproducts extends Controller {
 							}
 						}
 					}
-					$retrievied_items = $this->model_tshirtgang_products->get(array('ids'  => $retrievied_items_ids)); // retrieving from model also returns opencart product_id
+					//$retrievied_items = $this->model_tshirtgang_products->get(array('ids'  => $retrievied_items_ids)); // retrieving from model also returns opencart product_id
 					$this->response->setOutput(json_encode(array('status'=>'success', 'done'=>false, 'retrieved'=>$newly_retrieved_count, 'duplicate'=>$duplicate_count, 'count'=>$total_items, 'messages'=> $messages, 'items'=>$retrievied_items)));
 				} else {
 					// tshirtgang query success but returned empty result

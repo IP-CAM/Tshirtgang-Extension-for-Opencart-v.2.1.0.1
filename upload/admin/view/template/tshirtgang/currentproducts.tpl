@@ -234,6 +234,7 @@
               window.onbeforeunload = null;
             } else {
               sync(startpage+1);
+              debugger;
             }
           },
           error: function(xhr, textStatus, thrownError){

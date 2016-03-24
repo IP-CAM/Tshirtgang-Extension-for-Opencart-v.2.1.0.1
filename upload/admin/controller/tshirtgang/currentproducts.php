@@ -594,7 +594,8 @@ class ControllerTshirtgangCurrentproducts extends Controller {
 		$this->model_tshirtgang_products->seoFriendlyUrl(
 			array(
 				'product_id' => $product_id,
-				'keyword'    => $product_id.' '.$item->title
+				//'keyword'    => $product_id.' '.$item->title
+				'keyword'    => $item->productID.' '.$item->title,
 			)
 		);
 	}

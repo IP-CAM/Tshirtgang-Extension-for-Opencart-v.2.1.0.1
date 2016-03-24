@@ -275,9 +275,29 @@ class ControllerTshirtgangCurrentproducts extends Controller {
 							'description'      => '',
 							'meta_title'       => '',
 							'meta_description' => '',
-							'meta_keyword'     => ''
+							'meta_keyword'     => '',
+							
 						)
-					)
+					),
+					// -start- uksb google merchant plugin specific
+					'google_category_gb' => '',
+					'google_category_us' => '',
+					'google_category_au' => '',
+					'google_category_fr' => '',
+					'google_category_de' => '',
+					'google_category_it' => '',
+					'google_category_nl' => '',
+					'google_category_es' => '',
+					'google_category_pt' => '',
+					'google_category_cz' => '',
+					'google_category_jp' => '',
+					'google_category_dk' => '',
+					'google_category_no' => '',
+					'google_category_pl' => '',
+					'google_category_ru' => '',
+					'google_category_sv' => '',
+					'google_category_tr' => '',
+					// --end-- uksb google merchant plugin specific
 				)
 			);
 		}
@@ -495,6 +515,79 @@ class ControllerTshirtgangCurrentproducts extends Controller {
 				'weight_prefix'   => '+'
 			);
 		}
+		
+		// -start- uksb google merchant plugin specific
+		$product_data['g_on_google']           = '1';
+		$product_data['google_category_gb']    = '';
+		$product_data['google_category_us']    = '';
+		$product_data['google_category_au']    = '';
+		$product_data['google_category_fr']    = '';
+		$product_data['google_category_de']    = '';
+		$product_data['google_category_it']    = '';
+		$product_data['google_category_nl']    = '';
+		$product_data['google_category_es']    = '';
+		$product_data['google_category_pt']    = '';
+		$product_data['google_category_cz']    = '';
+		$product_data['google_category_jp']    = '';
+		$product_data['google_category_dk']    = '';
+		$product_data['google_category_no']    = '';
+		$product_data['google_category_pl']    = '';
+		$product_data['google_category_ru']    = '';
+		$product_data['google_category_sv']    = '';
+		$product_data['google_category_tr']    = '';
+		$product_data['g_condition']           = 'new';
+		$product_data['g_gtin']                = '';
+		$product_data['g_identifier_exists']   = '1';
+		$product_data['g_gender']              = 'unisex';
+		$product_data['g_age_group']           = 'Adult';
+
+		$product_data['g_size_type']           = 'regular';
+		$product_data['g_size_system']         = 'US';
+
+		$product_data['g_brand']               = 'Gildan';
+		$this->load->model('setting/setting');
+		$store_info = $this->model_setting_setting->getSetting('config');
+		$product_data['g_brand']               = $store_info['config_meta_title'];
+
+		//$data['g_colour']    = (isset($data['variant'])?implode(',', $data['g_colourx']):'');
+		//$data['g_size']      = (isset($data['variant'])?implode(',', $data['g_sizex']):'');
+		//$data['g_material']  = (isset($data['variant'])?implode(',', $data['g_materialx']):'');
+		//$data['g_pattern']   = (isset($data['variant'])?implode(',', $data['g_patternx']):'');
+		//$data['v_mpn']       = (isset($data['variant'])?implode(',', $data['v_mpnx']):'');
+		//$data['v_gtin']      = (isset($data['variant'])?implode(',', $data['v_gtinx']):'');
+		//$data['v_prices']    = (isset($data['variant'])?implode(',', $data['v_pricesx']):'');
+		//$data['v_images']    = (isset($data['variant'])?implode(',', $data['v_imagesx']):'');
+
+		$this->load->model('tshirtgang/pricing');
+
+		$product_data['variant'] = array();
+		$product_data['variant'][0] = array();
+		$product_data['variant'][0]['g_colour']   = $item->color;
+		$product_data['variant'][0]['g_size']     = 'Medium';
+		$product_data['variant'][0]['g_material'] = '';
+		$product_data['variant'][0]['g_pattern']  = '';
+		$product_data['variant'][0]['v_mpn']      = $item->productID;
+		$product_data['variant'][0]['v_gtin']     = '';
+		//$product_data['variant'][0]['v_prices']   = $this->model_tshirtgang_pricing->get(array('style'=>$item->style, 'color'=>$item->color));
+		$product_data['variant'][0]['v_prices']   = '';
+		$product_data['variant'][0]['v_images']   = $item->image;
+
+		$product_data['g_multipack']           = '0';
+		$product_data['g_is_bundle']           = '0';
+		$product_data['g_adult']               = '0';
+
+		$product_data['g_adwords_redirect']    = '';
+		$product_data['g_custom_label_0']      = '';
+		$product_data['g_custom_label_1']      = '';
+		$product_data['g_custom_label_2']      = '';
+		$product_data['g_custom_label_3']      = '';
+		$product_data['g_custom_label_4']      = '';
+		$product_data['g_expiry_date']         = '';
+		$product_data['g_unit_pricing_measure']      = '';
+		$product_data['g_unit_pricing_base_measure'] = '';
+		$product_data['g_energy_efficiency_class']   = '0';
+		// --end-- uksb google merchant plugin specific
+		
 		//////////////////////////////////
 		$product_id = $this->model_catalog_product->addProduct($product_data);
 		//////////////////////////////////

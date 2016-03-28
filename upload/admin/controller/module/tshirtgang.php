@@ -144,7 +144,7 @@ class ControllerModuleTshirtgang extends Controller {
 		$this->model_localisation_order_status->addOrderStatus(
 			array(
 				'order_status' => array(
-					'1' => 'Send order to Tshirtgang',
+					'1' => array('name' => 'Send order to Tshirtgang'),
 				)
 			)
 		);

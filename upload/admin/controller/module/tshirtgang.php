@@ -187,7 +187,6 @@ class ControllerModuleTshirtgang extends Controller {
 		$statuses = $this->model_localisation_order_status->getOrderStatuses(
 			array(
 				'order' => 'DESC',
-				)
 			)
 		);
 		foreach($statuses as $key => $value){

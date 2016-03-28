@@ -403,7 +403,7 @@ class ControllerTshirtgangCurrentproducts extends Controller {
 		$product_data['product_description'] = array();
 		$product_data['product_description'][1] = array( // 1=english
 			'name'             => $item->title,
-			'description'      => '&#x3C;p&#x3E;&#x3C;strong&#x3E;'.htmlspecialchars($item->title).'&#x3C;/strong&#x3E;. This cool, essential t-shirt is available in many styles and colors including mens, womens and kids. The graphic is printed on a quality, preshrunk cotton shirt you will love, satisfaction guaranteed. This tee is sure to be a favorite!&#x3C;/p&#x3E;',,
+			'description'      => '&#x3C;p&#x3E;&#x3C;strong&#x3E;'.htmlspecialchars($item->title).'&#x3C;/strong&#x3E;. This cool, essential t-shirt is available in many styles and colors including mens, womens and kids. The graphic is printed on a quality, preshrunk cotton shirt you will love, satisfaction guaranteed. This tee is sure to be a favorite!&#x3C;/p&#x3E;',
 			'tag'              => '',
 			'meta_title'       => $item->title,
 			'meta_description' => '',

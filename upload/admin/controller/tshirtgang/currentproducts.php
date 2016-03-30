@@ -136,17 +136,6 @@ class ControllerTshirtgangCurrentproducts extends Controller {
 							// TODO: check, even if duplicate, if the images are present. if not download the images.
 						} else {
 							$newly_retrieved_count++;
-							$this->model_tshirtgang_products->add(
-								array(
-									'id'           => $item->productID,
-									'title'        => $item->title,
-									'color'        => $item->color,
-									'style'        => $item->style,
-									'image'        => $item->image,
-									'overlay'      => $item->overlay,
-									'master_image' => $item->masterImage
-								)
-							);
 							if(empty($item->title)){
 								$messages[]='item '.$item->productID.' has no title'; // TODO: use language
 								$has_error = true;
@@ -204,10 +193,23 @@ class ControllerTshirtgangCurrentproducts extends Controller {
 								}
 							}
 							// --end-- download and scale images
+							$oc_product_id=0;
 							if(!$has_error){
-								$this->addToProducts($item);
+								$oc_product_id = $this->addToProducts($item);
 								$retrievied_items_ids[] = $item->productID;
 							}
+							$this->model_tshirtgang_products->add(
+								array(
+									'id'           => $item->productID,
+									'product_id'   => $oc_product_id,
+									'title'        => $item->title,
+									'color'        => $item->color,
+									'style'        => $item->style,
+									'image'        => $item->image,
+									'overlay'      => $item->overlay,
+									'master_image' => $item->masterImage
+								)
+							);
 						}
 					}
 					//$retrievied_items = $this->model_tshirtgang_products->get(array('ids'  => $retrievied_items_ids)); // retrieving from model also returns opencart product_id
@@ -598,6 +600,7 @@ class ControllerTshirtgangCurrentproducts extends Controller {
 				'keyword'    => $item->productID.' '.$item->title,
 			)
 		);
+		return $product_id;
 	}
 	
 	public function dataTableAjax(){

@@ -5,6 +5,7 @@ class ControllerModuleTshirtgang extends Controller {
 	public function install() {
 		$this->db->query("CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "tshirtgang_products` (
 			`id` int(10) UNSIGNED NOT NULL,
+			`product_id` int(10) UNSIGNED NOT NULL,
 			`title` varchar(256) NOT NULL,
 			`color` varchar(64) NOT NULL,
 			`style` varchar(64) NOT NULL,
@@ -12,14 +13,16 @@ class ControllerModuleTshirtgang extends Controller {
 			`overlay` varchar(128) NOT NULL,
 			`master_image`varchar(128) NOT NULL,
 			`datetime_retrieved` datetime NOT NULL,
-			PRIMARY KEY (`id`))"
+			PRIMARY KEY (`id`)) DEFAULT CHARSET=utf8"
 		);
+
+		$this->db->query("ALTER TABLE `" . DB_PREFIX . "tshirtgang_products` ADD INDEX(`product_id`)");
 
 		$this->db->query("CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "tshirtgang_pricing` (
 			`code` varchar(64) NOT NULL,
 			`price` decimal(6,2) NOT NULL,
 			`modified_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-			PRIMARY KEY (`code`))"
+			PRIMARY KEY (`code`)) DEFAULT CHARSET=utf8"
 		);
 
 		$this->db->query("INSERT INTO `" . DB_PREFIX . "tshirtgang_pricing`(`code`,`price`) VALUES('UseFlatRate'                     , '1.00')");

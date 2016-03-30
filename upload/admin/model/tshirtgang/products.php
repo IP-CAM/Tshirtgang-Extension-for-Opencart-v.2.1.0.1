@@ -3,6 +3,7 @@ class ModelTshirtgangProducts extends Model {
 	public function add($data) {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "tshirtgang_products SET 
 			id = '" .           $this->db->escape( $data['id']           ) . "',
+			product_id = '" .   $this->db->escape( $data['product_id']   ) . "',
 			title = '" .        $this->db->escape( $data['title']        ) . "',
 			color = '" .        $this->db->escape( $data['color']        ) . "',
 			style = '" .        $this->db->escape( $data['style']        ) . "',
@@ -46,7 +47,7 @@ class ModelTshirtgangProducts extends Model {
 		$sql .= "FROM ";
 		$sql .= " " . DB_PREFIX . "tshirtgang_products tsgp ";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product ocp ON ";
-		$sql .= " CONCAT('fbt_', tsgp.id) = ocp.mpn ";
+		$sql .= " tsgp.product_id = ocp.product_id ";
 		if(isset($data['ids']) && is_array($data['ids']) && !empty($data['ids']) ){
 			$ids=implode(',',$data['ids']);
 			$where_and[] = " tsgp.id IN(". $ids .") ";
@@ -119,7 +120,7 @@ class ModelTshirtgangProducts extends Model {
 		$sql .= "FROM ";
 		$sql .= " " . DB_PREFIX . "tshirtgang_products tsgp ";
 		$sql .= " LEFT JOIN " . DB_PREFIX . "product ocp ON ";
-		$sql .= " CONCAT('fbt_', tsgp.id) = ocp.mpn";
+		$sql .= " tsgp.product_id = ocp.product_id ";
 		$query = $this->db->query($sql);
 		foreach ($query->rows as $result) {
 			$product_data[] = $result;
@@ -253,7 +254,7 @@ class ModelTshirtgangProducts extends Model {
 				$sql .= "LEFT JOIN " . DB_PREFIX . "product ocp ";
 				$sql .= " ON ocp.product_id = ocpov.product_id ";
 				$sql .= "LEFT JOIN " . DB_PREFIX . "tshirtgang_products tsgp ";
-				$sql .= " ON CONCAT('fbt_', tsgp.id) = ocp.mpn ";
+				$sql .= " tsgp.product_id = ocp.product_id ";
 				$sql .= "SET ocpov.price=". (float)$tso2['price'] . " ";
 				$sql .= "WHERE ";
 				$sql .= "  ocpov.option_value_id = " . (int)$tso2['option_value_id'] . " ";

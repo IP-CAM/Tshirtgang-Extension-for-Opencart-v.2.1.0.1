@@ -5,12 +5,20 @@
   .popover.right {
     max-width: 100%;
   }
+  #page_input {
+    width: 80px;
+  }
+  #ipp_input {
+    width: 50px;
+  }
   </style>
   <div class="page-header">
     <div class="container-fluid">
       <div class="pull-right">
-        <!--<button type="submit" form="form-attribute" data-toggle="tooltip" title="<?php echo $button_save; ?>" class="btn btn-primary"><i class="fa fa-save"></i></button>-->
-        <!--<a href="<?php echo $sync;   ?>" data-toggle="tooltip" title="<?php echo $button_sync;   ?>" class="btn btn-primary"><i class="fa fa-arrows-h"></i></a>-->
+        <input type='number' id="page_input" placeholder="Page" value="1" data-toggle="tooltip" title="Start Page"></input>
+        <input type='number' id="ipp_input" placeholder="Item per Page" value="10" data-toggle="tooltip" title="Item per Page"></input>
+        <input type='checkbox' id="continuous_input" checked data-toggle="tooltip" title="Continuous"></input>
+        <input type='checkbox' id="update_table_input" checked data-toggle="tooltip" title="Update Table"></input>
         <button type="button" id="button-sync" data-toggle="tooltip" title="<?php echo $button_sync; ?>" class="btn btn-primary"><i class="fa fa-arrows-h"></i></button>
         <a href="<?php echo $cancel; ?>" data-toggle="tooltip" title="<?php echo $button_cancel; ?>" class="btn btn-default"><i class="fa fa-reply"></i></a>
       </div>
@@ -75,7 +83,10 @@
   <script src="view/vendor/datatables/jquery.dataTables.min.js"></script>
   <script type="text/javascript">
     var tableajax = 0;
+    var start_page = 1;
     var item_per_page = 4;
+    var continuous = true;
+    var update_table = true;
     var unloadFunc = function() {
       var Ans = confirm("Are you sure you want leave this page? Your connection to the Tshirtgang server will be lost.");
       if(Ans==true)
@@ -180,6 +191,12 @@
       $('#sync-alert').addClass('alert-warning');
       $('#sync-spinner').show();
       $('#sync-messages').empty();
+      document.getElementById('page_input').readOnly = true;
+      document.getElementById('ipp_input').readOnly = true;
+      start_page    = parseInt( document.getElementById('page_input').value);
+      item_per_page = parseInt( document.getElementById('ipp_input' ).value);
+      continuous   =  $('#continuous_input:checked').val();
+      update_table =  $('#update_table_input:checked').val();
       var item = document.createElement('li');
       var ul = document.getElementById("sync-messages");
       var now = new Date();
@@ -188,7 +205,7 @@
       $('#sync-alert').show();
       //$('#empty-row').remove();
       window.onbeforeunload = unloadFunc;
-      sync(1);
+      sync(start_page);
     });
     function sync(startpage){
       $.ajax({
@@ -203,22 +220,30 @@
             ipp: item_per_page,
           },
           success: function(json){
-            console.log(json);
+            //console.log(json);
             pc = parseInt( $('#products-count').html() ,10) + json.count;
             rc = parseInt( $('#retrieved-count').html(),10) + json.retrieved;
             dc = parseInt( $('#duplicate-count').html(),10) + json.duplicate;
             $('#products-count').text(pc);
             $('#retrieved-count').text(rc);
             $('#duplicate-count').text(dc);
+            document.getElementById('page_input').value = startpage+1;
+            continuous   =  $('#continuous_input:checked').val();
+            update_table =  $('#update_table_input:checked').val();
             for(var i = 0; i < json.messages.length; i++) {
               var item = document.createElement('li');
               var ul = document.getElementById("sync-messages");
               item.appendChild(document.createTextNode(json.messages[i]));
               ul.appendChild(item);
             }
-            tableajax.draw();
+            if(update_table){
+              tableajax.draw();
+            }
             $('.popover').remove();
             if(json.count != item_per_page){
+              json.done=true;
+            }
+            if(!continuous){
               json.done=true;
             }
             if(json.done){
@@ -226,6 +251,8 @@
               $('#sync-spinner').hide();
               $('#sync-alert').removeClass('alert-warning');
               $('#sync-alert').addClass('alert-success');
+              document.getElementById('page_input').readOnly = false;
+              document.getElementById('ipp_input').readOnly = false;
               var item = document.createElement('li');
               var ul = document.getElementById("sync-messages");
               var now = new Date();

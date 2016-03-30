@@ -7,6 +7,9 @@ $_['text_module']      = 'Modules';
 $_['text_success']     = 'Success:';
 $_['text_edit']        = 'Edit ';
 
+$_['text_delete_on_uninstall']      = 'Delete all Tshirtgang products on uninstall';
+$_['text_dont_delete_on_uninstall'] = 'Retain all Tshirtgang products on uninstall';
+
 // Entry
 $_['entry_name']       = 'Main Settings';
 $_['entry_status']     = 'Status';

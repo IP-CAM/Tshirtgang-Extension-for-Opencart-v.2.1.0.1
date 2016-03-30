@@ -56,12 +56,26 @@
           <div class="form-group">
             <label class="col-sm-2 control-label">Version</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" value="2.1.0" readonly>
+              <input type="text" class="form-control" value="2.1.1" readonly>
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">ImageMagick</label>
             <label class="col-sm-10 text-center"><?php if(extension_loaded('imagick')) { ?><i class="fa fa-circle text-success"></i> Installed<?php } else { ?><i class="fa fa-exclamation-circle text-danger"> Not Installed</i><?php }?></label>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="entry-on_uninstall">On Uninstall</label>
+            <div class="col-sm-10">
+              <select name="tshirtgang_delete_on_uninstall" id="input-delete_on_uninstall" class="form-control">
+                <?php if ($tshirtgang_delete_on_uninstall) { ?>
+                <option value="1" selected="selected"><?php echo $text_delete_on_uninstall; ?></option>
+                <option value="0"><?php echo $text_dont_delete_on_uninstall; ?></option>
+                <?php } else { ?>
+                <option value="1"><?php echo $text_delete_on_uninstall; ?></option>
+                <option value="0" selected="selected"><?php echo $text_dont_delete_on_uninstall; ?></option>
+                <?php } ?>
+              </select>
+            </div>
           </div>
         </form>
       </div>

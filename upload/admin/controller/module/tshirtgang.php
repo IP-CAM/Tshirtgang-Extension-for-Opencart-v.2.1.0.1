@@ -155,6 +155,11 @@ class ControllerModuleTshirtgang extends Controller {
 	}
 
 	public function uninstall() {
+		$this->load->model('setting/setting');
+		if($this->config->get('tshirtgang_delete_on_uninstall') != '1' ){
+			return;
+		}
+
 		$this->load->model('tshirtgang/products');
 		$current_products = $this->model_tshirtgang_products->getAll();
 
@@ -218,6 +223,9 @@ class ControllerModuleTshirtgang extends Controller {
 		
 		$data['text_enabled']  = $this->language->get('text_enabled');
 		$data['text_disabled'] = $this->language->get('text_disabled');
+
+		$data['text_delete_on_uninstall']      = $this->language->get('text_delete_on_uninstall');
+		$data['text_dont_delete_on_uninstall'] = $this->language->get('text_dont_delete_on_uninstall');
 
 		$data['entry_status']  = $this->language->get('entry_status');
 		$data['entry_api_key'] = $this->language->get('entry_api_key');
@@ -295,6 +303,12 @@ class ControllerModuleTshirtgang extends Controller {
 			$data['tshirtgang_status'] = $this->request->post['tshirtgang_status'];
 		} else {
 			$data['tshirtgang_status'] = $this->config->get('tshirtgang_status');;
+		}
+		
+		if (isset($this->request->post['delete_on_uninstall'])) {
+			$data['tshirtgang_delete_on_uninstall'] = $this->request->post['tshirtgang_delete_on_uninstall'];
+		} else {
+			$data['tshirtgang_delete_on_uninstall'] = $this->config->get('tshirtgang_delete_on_uninstall');
 		}
 		
 		$data['header'] = $this->load->controller('common/header');

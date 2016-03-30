@@ -56,7 +56,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label">Version</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" value="2.0.7" readonly>
+              <input type="text" class="form-control" value="2.1.0" readonly>
             </div>
           </div>
           <div class="form-group">

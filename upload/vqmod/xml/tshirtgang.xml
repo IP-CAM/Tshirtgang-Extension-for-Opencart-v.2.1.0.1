@@ -175,7 +175,12 @@
                 if(selectobject.options[i]['text'] == samestyle){
                   selectobject.selectedIndex = i;
                 }
-                var found = $.inArray(selectobject.options[i].text, apparel_available_options.colors_styles[selectedcolor]) > -1;
+                var found = true;
+                if(typeof apparel_available_options.colors_styles != 'undefined'){
+                  found = $.inArray(selectobject.options[i].text, apparel_available_options.colors_styles[selectedcolor]) > -1;
+                } else {
+                  found = false;
+                }
                 if(found == false){
                   selectobject.remove(i);
                 }
@@ -195,11 +200,17 @@
                 }
               }
             }
-            ////
+          }
+          function updateSize(samestyle,samecolor){
             var selectobject = document.getElementById("input-option"+options_ids['Tshirt Size']);
             for(var i=selectobject.length-1; i > -1; i--){ // loop backwards to work properly
               if(selectobject.options[i].value != ''){ // skip --- Please Select --- with '' value
-                var found = $.inArray(selectobject.options[i].text, apparel_available_options.styles_sizes[selectedstyle]) > -1;
+                var found = false;
+                if(typeof apparel_available_options['styles_colors_sizes'][samestyle] != 'undefined'){
+                  found = $.inArray(selectobject.options[i].text, apparel_available_options['styles_colors_sizes'][samestyle][samecolor]) > -1;
+                } else {
+                  found = false;
+                }
                 if(found == false){
                   selectobject.remove(i);
                 }
@@ -388,24 +399,26 @@
             }
           }
           function colorSelectChanged(){
+            console.log('colorSelectChanged');
             var ec = document.getElementById('input-option'+options_ids['Tshirt Color']);
             var selected_color = ec.options[ec.selectedIndex].text;
             var es = document.getElementById('input-option'+options_ids['Tshirt Style']);
             var same_style = es.options[es.selectedIndex].text;
-            // update style options, do not change selected style, size options remain the same 
-            restoreOriginalOptions([ options_ids['Tshirt Style'] ]);
+            restoreOriginalOptions([ options_ids['Tshirt Style'], options_ids['Tshirt Size'] ]);
             colorChanged(selected_color, same_style);
+            updateSize(same_style, selected_color);
             updatePricePlaceholder();
             updateImage();
           }
           function styleSelectChanged(){
+            console.log('styleSelectChanged');
             var es = document.getElementById('input-option'+options_ids['Tshirt Style']);
             var selected_style = es.options[es.selectedIndex].text;
             var ec = document.getElementById('input-option'+options_ids['Tshirt Color']);
             var same_color = ec.options[ec.selectedIndex].text;
-            // update color options, do not change selected color, change size options based on new style, set size option no '-- Please select ---'
-            restoreOriginalOptions( [ options_ids['Tshirt Size'], options_ids['Tshirt Color'] ] );
+            restoreOriginalOptions( [ options_ids['Tshirt Color'], options_ids['Tshirt Size'] ] );
             styleChanged(selected_style, same_color);
+            updateSize(selected_style, same_color);
             updatePricePlaceholder();
             updateImage();
           }
@@ -436,6 +449,7 @@
                 apparel_available_options = json.options;
                 options_ids               = json.option_ids;
                 tsg_product_id            = json.product_data.id;
+                console.log(apparel_available_options);
                 for (var key in json.option_ids) {
                   var selectobject = document.getElementById("input-option"+json.option_ids[key]);
                   apparel_options["input-option"+json.option_ids[key]] = [];
@@ -447,6 +461,7 @@
                 // initial setup 
                 colorChanged(json.product_data.color, json.product_data.style);
                 styleChanged(json.product_data.style, json.product_data.color);
+                updateSize(json.product_data.style, json.product_data.color);
                 updateImage();
                 ////////////
                 document.getElementById('input-option'+json.option_ids['Tshirt Color']).onchange = colorSelectChanged;

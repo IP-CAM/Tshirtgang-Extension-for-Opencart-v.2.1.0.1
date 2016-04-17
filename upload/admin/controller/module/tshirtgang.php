@@ -95,27 +95,27 @@ class ControllerModuleTshirtgang extends Controller {
 		$options = $this->model_catalog_option->getOptions();
 
 		$tshirtstyle_option_exist = false;
-		$tshirtsize_option_exist  = false;
 		$tshirtcolor_option_exist = false;
+		$tshirtsize_option_exist  = false;
 		foreach($options as $option){
 			if($option['name'] == 'Tshirt Style') {
 				$tshirtstyle_option_exist = true;
 			}
-			if($option['name'] == 'Tshirt Size') {
-				$tshirtsize_option_exist = true;
-			}
 			if($option['name'] == 'Tshirt Color') {
 				$tshirtcolor_option_exist = true;
+			}
+			if($option['name'] == 'Tshirt Size') {
+				$tshirtsize_option_exist = true;
 			}
 		}
 		if(!$tshirtstyle_option_exist){
 			$option_id = $this->model_catalog_option->addOption( $this->tshirtStyleOption() );
 		}
-		if(!$tshirtsize_option_exist){
-			$option_id = $this->model_catalog_option->addOption( $this->tshirtSizeOption() );
-		}
 		if(!$tshirtcolor_option_exist){
 			$option_id = $this->model_catalog_option->addOption( $this->tshirtColorOption() );
+		}
+		if(!$tshirtsize_option_exist){
+			$option_id = $this->model_catalog_option->addOption( $this->tshirtSizeOption() );
 		}
 		// --end-- add option 'Tshirt Style'-'Standard,Ladies,Mens Fitted'
 		

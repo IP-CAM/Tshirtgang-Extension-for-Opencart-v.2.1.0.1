@@ -2,7 +2,7 @@
 
 ## Overview
 
-This Opencart plugin lets you retrieve your Tshirtgang products.
+This plugin lets you retrieve your Tshirtgang products and automatically sync orders to your account.
 
 ## Features
 - Automatically generate SEO friendly URL

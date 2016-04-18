@@ -449,7 +449,6 @@
                 apparel_available_options = json.options;
                 options_ids               = json.option_ids;
                 tsg_product_id            = json.product_data.id;
-                console.log(apparel_available_options);
                 for (var key in json.option_ids) {
                   var selectobject = document.getElementById("input-option"+json.option_ids[key]);
                   apparel_options["input-option"+json.option_ids[key]] = [];

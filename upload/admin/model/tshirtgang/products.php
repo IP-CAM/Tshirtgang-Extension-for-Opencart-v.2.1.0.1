@@ -53,6 +53,9 @@ class ModelTshirtgangProducts extends Model {
 			$where_and[] = " tsgp.id IN(". $ids .") ";
 		}
 		if(isset($data['search'])){
+			$data['search'] = trim($data['search']);
+			$data['search'] = $this->db->escape($data['search']);
+
 			$where_or[] = " tsgp.id LIKE '%".$data['search']."%' ";
 			$where_or[] = " tsgp.title LIKE '%".$data['search']."%' ";
 			$where_or[] = " tsgp.color LIKE '%".$data['search']."%' ";

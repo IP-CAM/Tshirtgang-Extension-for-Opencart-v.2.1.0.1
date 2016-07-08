@@ -49,10 +49,9 @@ class ControllerTshirtgangPricing extends Controller {
 			////Shirt_YTHLG_Incremental
 			////Shirt_XL_Incremental
 			
-			//TODO: loop to all the tsg products and update default opencart-price (default price depends on style and color)
 			$this->load->model('tshirtgang/products');
 			$this->model_tshirtgang_products->updateProductPricingAll();
-			$this->model_tshirtgang_products->updateProductStyleOptionPricingAll();
+			//$this->model_tshirtgang_products->updateProductStyleOptionPricingAll();
 		}
 		
 		$data['heading_title'] = $this->language->get('heading_title');

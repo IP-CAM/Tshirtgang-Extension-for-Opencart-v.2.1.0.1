@@ -257,7 +257,7 @@ class ModelTshirtgangProducts extends Model {
 				$sql .= "LEFT JOIN " . DB_PREFIX . "product ocp ";
 				$sql .= " ON ocp.product_id = ocpov.product_id ";
 				$sql .= "LEFT JOIN " . DB_PREFIX . "tshirtgang_products tsgp ";
-				$sql .= " tsgp.product_id = ocp.product_id ";
+				$sql .= " ON tsgp.product_id = ocp.product_id ";
 				$sql .= "SET ocpov.price=". (float)$tso2['price'] . " ";
 				$sql .= "WHERE ";
 				$sql .= "  ocpov.option_value_id = " . (int)$tso2['option_value_id'] . " ";

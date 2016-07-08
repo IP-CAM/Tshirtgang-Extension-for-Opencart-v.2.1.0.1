@@ -387,7 +387,7 @@
                 },
                 success:function(json){
                   //console.log(json);
-                  document.getElementById("price-placeholder").innerHTML = '$'+json.new_price;
+                  document.getElementById("price-placeholder").innerHTML = json.new_price;
                 }, // -end- success
                 error: function(xhr, ajaxOptions, thrownError){
                   alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);

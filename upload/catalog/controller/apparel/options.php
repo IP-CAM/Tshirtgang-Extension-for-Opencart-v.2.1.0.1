@@ -38,7 +38,9 @@ class ControllerApparelOptions extends Controller {
 					}
 				}
 			}
-			$new_price = number_format($new_price*(int)$quantity,2);
+			$this->load->model('catalog/product');
+			$product_info = $this->model_catalog_product->getProduct($product_id);
+			$new_price = $this->currency->format($this->tax->calculate($new_price, $product_info['tax_class_id'], $this->config->get('config_tax')));
 		}
 		
 		$this->response->setOutput(json_encode(array('new_price'=>$new_price)));

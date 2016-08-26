@@ -83,7 +83,7 @@ class ControllerModuleTshirtgangSendorder extends Controller {
 									<color>$color</color>
 									<quantity>$qty</quantity>
 									<priorityShipping>$priorityShipping</priorityShipping>
-									<comments>$comment</comments>
+									<comments></comments>
 							</Order>";
 					} else {
 						//error_log('not TSG product. skip! ' . $order_product['product_id']);

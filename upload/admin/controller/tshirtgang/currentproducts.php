@@ -388,7 +388,7 @@ class ControllerTshirtgangCurrentproducts extends Controller {
 			'shipping'        => 1,
 			'price'           => $this->model_tshirtgang_pricing->get(array('style'=>$item->style, 'color'=>$item->color)),
 			//'price'           => 0.0,
-			'points'          => 1000,     // TODO
+			'points'          => 0,        // TODO
 			'weight'          => 10.00,    // TODO
 			'weight_class_id' => 1,        // TODO: get this value from db
 			'length'          => 10.00,    // TODO
